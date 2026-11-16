@@ -78,14 +78,19 @@ class AsyncHelloAgentsLLM(HelloAgentsLLM):
 
     async def ainvoke(self, messages: list[dict[str, str]], **kwargs: Any) -> str:
         """Return content without wrapping/logging a raw provider exception."""
+        # max_tokens, not max_completion_tokens: the DeepSeek-compatible endpoint
+        # ignores the latter (verified 2026-11-14), leaving output unbounded.
         response = await self.async_client.chat.completions.create(
             model=self.model,
             messages=messages,
             temperature=self.temperature,
-            max_completion_tokens=self.max_tokens,
+            max_tokens=self.max_tokens,
             stream=False,
             **kwargs,
         )
+        # Some providers answer a filtered or rejected request with no choice at all.
+        if not response.choices:
+            raise InvalidModelOutput("model_output_missing")
         if response.choices[0].finish_reason == "length":
             raise InvalidModelOutput("model_output_truncated")
         return response.choices[0].message.content or ""
@@ -104,7 +109,7 @@ class AsyncHelloAgentsLLM(HelloAgentsLLM):
             model=self.model,
             messages=messages,
             temperature=self.temperature,
-            max_completion_tokens=self.max_tokens,
+            max_tokens=self.max_tokens,
             stream=True,
             **kwargs,
         )
