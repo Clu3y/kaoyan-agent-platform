@@ -783,6 +783,7 @@ Java不在远程调用时持有数据库事务。task表先保存RUNNING，再�
 - 补齐版本、草稿、提示、幂等、结束、撤回及真实错题掌握；补齐正式招生来源与发布资料。
 - 按契约实现检索、规则工具、版本化引用、正式推荐和错题辅导，再执行领域测试与同模型对比。
 - MySQL真实联调、模型供应商、Docker／公网、Windows及实机手机待运行；现有前端依赖问题的治理见适配记录，需单独核对兼容性。2026-11-02已将follow-redirects升至1.16.2、vite升至6.4.5，并大版本升级echarts 6.1、vue-tsc 3.3、unplugin-auto-import 21.1、unplugin-vue-components 32.1（需Node≥20.19），`npm audit`为0；生产构建与264项隔离浏览器回归通过，范围见[学情画像验证记录](docs/learning-profile-visualization-verification-2026-10-31.md#echarts-6-升级后续2026-11-02)。
+- 2026-11-17 G11移动端布局：刷题首屏开始按钮、提交后反馈滚入视野、院校详情手机优先字段卡片（其余字段展开）；双视口回归与HEAD基线对照见[移动端布局验证记录](docs/mobile-practice-school-verification-2026-11-17.md)，人工验收待完成，实机手机未运行。
 
 ### 8.4 学习与可检查成果
 
