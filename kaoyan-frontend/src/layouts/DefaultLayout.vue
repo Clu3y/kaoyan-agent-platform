@@ -10,7 +10,7 @@
 
     <aside class="sidebar">
       <div class="logo">
-        <span class="logo-mark">考</span>
+        <img class="logo-mark" src="/logo.png" alt="" width="36" height="36" />
         <div>
           <div class="logo-name">考研 Agent</div>
           <div class="logo-slogan">智能备考平台</div>
@@ -34,6 +34,7 @@
         <div class="menu-group">
           <div class="group-label">资源</div>
           <el-menu-item :index="navigationPath('SCHOOLS')"><el-icon><School /></el-icon><span>院校库</span></el-menu-item>
+          <el-menu-item index="/school-recommendations"><el-icon><Compass /></el-icon><span>择校推荐</span></el-menu-item>
           <el-menu-item :index="navigationPath('DOCUMENTS')"><el-icon><Folder /></el-icon><span>备考资料</span></el-menu-item>
         </div>
         <div v-if="userStore.isAdmin" class="menu-group">
@@ -84,7 +85,7 @@ import { useUserStore } from '@/stores/user'
 import { ElMessage } from 'element-plus'
 import {
   HomeFilled, EditPen, Notebook, Star, TrendCharts,
-  School, Folder, Setting, Document, ChatDotRound
+  School, Folder, Setting, Document, ChatDotRound, Compass
 } from '@element-plus/icons-vue'
 
 const assistant = useAssistantStore()
@@ -102,6 +103,7 @@ const activeMenu = computed(() => route.path.startsWith('/admin/')
 const crumbMap: Record<string, string> = {
   '': '首页', practice: '刷题', wrong: '错题本', favorite: '收藏',
   stat: '学习统计', schools: '院校库', documents: '备考资料', notes: '个人笔记',
+  'school-recommendations': '择校推荐',
   profile: '个人中心', tasks: 'Agent 助手',
   'admin/questions': '题目录入与审核', 'admin/documents': '资料管理'
 }
@@ -169,10 +171,8 @@ const onLogout = async () => {
   border-bottom: 1px solid var(--fx-line);
 }
 .logo-mark {
-  width: 36px; height: 36px; border-radius: 10px; color: #fff;
-  display: grid; place-items: center; font-weight: 700; flex-shrink: 0;
-  background: linear-gradient(140deg, #4d7bff 0%, var(--c-primary-strong) 55%, #4b46e0 100%);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .35), 0 6px 14px -6px rgba(43, 90, 230, .7);
+  width: 36px; height: 36px; border-radius: 8px; flex-shrink: 0; display: block;
+  box-shadow: 0 6px 14px -6px rgba(10, 21, 42, .6);
 }
 .logo-name { font-weight: 700; font-size: 15px; }
 .logo-slogan { font-size: 12px; color: var(--c-ink-2); margin-top: 2px; }
